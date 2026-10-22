@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de paletas | Colorfly Studio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Generador de paletas</h1>
+        <p>Colorfly Studio</p>
+    </header>
+
+    <main>
+        <!-- CONTROLES -->
+        <section class="controles">
+            <label for="select-cantidad">Cantidad de colores</label>
+            <select id="select-cantidad">
+                <option value="6">6 colores</option>
+                <option value="8">8 colores</option>
+                <option value="9">9 colores</option>
+            </select>
+
+            <label for="select-formato">Formato de código</label>
+            <select id="select-formato">
+                <option value="hex">HEX</option>
+                <option value="hsl">HSL</option>
+            </select>
+
+            <button id="btn-generar" type="button">GENERAR PALETA</button>
+        </section>
+
+        <!-- PALETA DE COLORES -->
+        <section id="paleta"></section>
+
+        <!-- MENSAJE DE FEEDBACK -->
+        <p id="toast" role="status"></p>
+    </main>
+
+    <footer>
+        <p>Proyecto Integrador M1</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
