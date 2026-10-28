@@ -15,8 +15,37 @@ function generarHsl() {
 }
 
 
-const botonGenerar = document.getElementById("btn-generar");
+// Crea una tarjeta con el color de fondo y su código escrito
+function crearTarjeta(color) {
+    const tarjeta = document.createElement("article");
+    tarjeta.className = "tarjeta";
+    tarjeta.style.backgroundColor = color;
 
-botonGenerar.addEventListener("click", function () {
-    console.log("Botón presionado");
-});
+    const codigo = document.createElement("p");
+    codigo.className = "codigo";
+    codigo.textContent = color;
+
+    tarjeta.appendChild(codigo);
+    return tarjeta;
+}
+
+const selectCantidad = document.getElementById("select-cantidad");
+const selectFormato = document.getElementById("select-formato");
+const contenedorPaleta = document.getElementById("paleta");
+
+function generarPaleta() {
+    const cantidad = Number(selectCantidad.value);
+    const formato = selectFormato.value;
+
+    contenedorPaleta.innerHTML = "";
+
+    for (let i = 0; i < cantidad; i++) {
+        const color = formato === "hex" ? generarHex() : generarHsl();
+        contenedorPaleta.appendChild(crearTarjeta(color));
+    }
+}
+
+
+const botonGenerar = document.getElementById("btn-generar");
+botonGenerar.addEventListener("click", generarPaleta);
+generarPaleta();
