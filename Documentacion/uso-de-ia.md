@@ -55,4 +55,25 @@ function generarHsl() {
   Cambié los nombres de las variables para que sean más claros y mostré
   el código HEX debajo de cada color en pantalla, esto lo hice como ejercicio practico antes de integrarlo en el PI. 
 
+### Prompt No.2 utilizado
+
+📸 [Ver captura del prompt con la IA](./capturas/promt-2-render-paleta.png)
+
+### Respuesta obtenida
+
+Pasos numerados con código y prueba en consola:
+1. Crear una tarjeta (`crearTarjeta`): crea un `<article>` con el color de fondo y el código escrito.
+2. Capturar elementos del DOM (`getElementById`).
+3. `generarPaleta`: lee cantidad y formato, vacía `#paleta` y repite con un `for`.
+4. Conectar el botón con `addEventListener("click", generarPaleta)`.
+5. Llamar `generarPaleta()` al final para la paleta inicial.
+
+### Qué aprendí / cómo lo adapté
+
+- Aprendí que con `document.createElement` puedo crear elementos HTML desde JavaScript y con `appendChild` meterlos dentro de otro. Así la cantidad de tarjetas cambia según lo que la persona elija, sin escribir el HTML a mano.
+- Entendí que `innerHTML = ""` limpia el contenedor antes de dibujar, para que las paletas nuevas no se acumulen sobre las anteriores.
+- Aprendí la diferencia entre `generarPaleta` y `generarPaleta()`. En el `addEventListener` va sin paréntesis porque solo le indico qué función ejecutar cuando hagan clic. Con paréntesis se ejecutaría de inmediato.
+- El valor de un `select` llega como texto, así que usé `Number()` para convertir la cantidad a número antes del `for`.
+- Adapté el resultado de la IA agregando una llamada a `generarPaleta()` al final del script, para que la página muestre una paleta apenas carga y no se vea vacía.
+- Probé cada paso en la consola del navegador (DevTools) antes de hacer el commit.
   
