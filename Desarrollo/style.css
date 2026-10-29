@@ -125,9 +125,19 @@ footer{
 }
 
 .codigo {
+    cursor: pointer;
     padding: 0.25rem 0.5rem;
     border-radius: 0.25rem;
     background-color: rgba(255, 255, 255, 0.85);
     color: #1a1a1a;
     font-weight: bold;
+}
+
+.codigo:hover {
+    background-color: #ffffff;
+}
+
+.codigo:focus-visible {
+    outline: 3px solid #1a1a1a;
+    outline-offset: 2px;
 }

@@ -57,6 +57,20 @@ function crearTarjeta(color, formato) {
     const codigo = document.createElement("p");
     codigo.className = "codigo";
     codigo.textContent = obtenerCodigo(color, formato);
+    codigo.tabIndex = 0;
+    codigo.setAttribute("role", "button");
+    codigo.setAttribute("aria-label", "Copiar código " + codigo.textContent);
+
+    codigo.addEventListener("click", function () {
+        copiarCodigo(codigo.textContent);
+    });
+
+    codigo.addEventListener("keydown", function (evento) {
+        if (evento.key === "Enter" || evento.key === " ") {
+            evento.preventDefault();
+            copiarCodigo(codigo.textContent);
+        }
+    });
 
     tarjeta.appendChild(codigo);
     return tarjeta;
@@ -103,4 +117,15 @@ botonGenerar.addEventListener("click", function () {
 
 selectFormato.addEventListener("change", mostrarPaleta);
 
-generarPaleta(); // Muestra una paleta al cargar la página
+generarPaleta(); // Muestra una paleta al cargar la página//
+
+// Copia un texto al portapapeles y avisa con el toast//
+function copiarCodigo(texto) {
+    navigator.clipboard.writeText(texto)
+        .then(function () {
+            mostrarToast("Texto copiado");
+        })
+        .catch(function () {
+            mostrarToast("No se pudo copiar");
+        });
+}
