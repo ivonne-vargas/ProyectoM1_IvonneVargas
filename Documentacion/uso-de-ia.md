@@ -77,3 +77,36 @@ Pasos numerados con código y prueba en consola:
 - Adapté el resultado de la IA agregando una llamada a `generarPaleta()` al final del script, para que la página muestre una paleta apenas carga y no se vea vacía.
 - Probé cada paso en la consola del navegador (DevTools) antes de hacer el commit.
   
+
+  ### Prompt No.3 utilizado
+
+📸 [Ver captura del prompt con la IA](./capturas/promt-3-formato-sin-perder-paleta.png)
+
+### Respuesta obtenida
+
+La IA identificó que el problema estaba en cómo guardaba los colores:
+como texto no se puede convertir de HEX a HSL. Propuso guardar cada
+color como un objeto con tres números (tono, saturación y luminosidad)
+y convertirlo a texto solo al mostrarlo. La solución quedó en 4 partes:
+1. `generarColor()` y la variable `paletaActual` para guardar la paleta.
+2. Dos funciones de conversión, `aTextoHsl` y `aTextoHex`.
+3. `mostrarPaleta()`, que dibuja desde la paleta guardada, separada de
+   `generarPaleta()`, que crea colores nuevos.
+4. Un evento `change` en el select de formato para redibujar.
+
+### Qué aprendí / cómo lo adapté
+
+- Aprendí que conviene separar "crear" de "mostrar". `generarPaleta()` crea
+  los colores nuevos y los guarda en `paletaActual`, y `mostrarPaleta()`
+  solo los dibuja. Gracias a eso puedo volver a dibujar la paleta, por
+  ejemplo al cambiar de formato, sin que los colores cambien.
+- Entendí qué es un objeto: un grupo de datos con nombre, como
+  `{ tono: 210, saturacion: 65, luminosidad: 50 }`. Para leer un dato uso
+  un punto, por ejemplo `color.tono`. Antes cada color era solo un texto
+  y por eso no podía convertirlo de HEX a HSL.
+- Aprendí que el evento `change` se dispara cuando la persona elige otra
+  opción en un `select`, mientras que `click` se dispara al hacer clic en
+  un elemento, como el botón. Usé `change` en el selector de formato para
+  que el código cambie al instante, sin pulsar "Generar paleta".
+
+  
