@@ -19,7 +19,19 @@ function generarColor() {
     return {
         tono: numeroAleatorio(360),
         saturacion: 40 + numeroAleatorio(50),
-        luminosidad: 35 + numeroAleatorio(40)
+        luminosidad: 35 + numeroAleatorio(40),
+        anclado: false
+    };
+}
+
+// Genera un color con tono cercano al de un color base//
+function generarColorParecido(base) {
+    const variacion = numeroAleatorio(40) - 20; // entre -20 y +20
+    return {
+        tono: (base.tono + variacion + 360) % 360,
+        saturacion: 40 + numeroAleatorio(50),
+        luminosidad: 35 + numeroAleatorio(40),
+        anclado: false
     };
 }
 
@@ -72,8 +84,19 @@ function crearTarjeta(color, formato) {
         }
     });
 
-    tarjeta.appendChild(codigo);
-    return tarjeta;
+    const botonAncla = document.createElement("button");
+    botonAncla.type = "button";
+    botonAncla.className = "btn-ancla";
+    botonAncla.textContent = color.anclado ? "Desanclar" : "Anclar";
+    botonAncla.setAttribute("aria-pressed", color.anclado);
+
+    botonAncla.addEventListener("click", function () {
+        alternarAncla(color);
+    });
+
+   tarjeta.appendChild(botonAncla);
+   tarjeta.appendChild(codigo);
+   return tarjeta;
 }
 
 
@@ -89,15 +112,36 @@ function mostrarPaleta() {
 
 function generarPaleta() {
     const cantidad = Number(selectCantidad.value);
-    paletaActual = [];
+    const ancla = paletaActual.find(function (color) {
+        return color.anclado;
+    });
+
+    const nuevaPaleta = [];
 
     for (let i = 0; i < cantidad; i++) {
-        paletaActual.push(generarColor());
+        if (i === 0 && ancla) {
+            nuevaPaleta.push(ancla);
+        } else if (ancla) {
+            nuevaPaleta.push(generarColorParecido(ancla));
+        } else {
+            nuevaPaleta.push(generarColor());
+        }
     }
 
+    paletaActual = nuevaPaleta;
     mostrarPaleta();
 }
 
+// Ancla un color (solo uno a la vez) o lo desancla//
+function alternarAncla(color) {
+    const estabaAnclado = color.anclado;
+    paletaActual.forEach(function (c) {
+        c.anclado = false;
+    });
+    color.anclado = !estabaAnclado;
+    mostrarPaleta();
+    mostrarToast(color.anclado ? "Color anclado" : "Color desanclado");
+}
 
 function mostrarToast(mensaje) {
     toast.textContent = mensaje;
