@@ -47,5 +47,21 @@ function generarPaleta() {
 
 
 const botonGenerar = document.getElementById("btn-generar");
-botonGenerar.addEventListener("click", generarPaleta);
-generarPaleta();
+botonGenerar.addEventListener("click", function () {
+    generarPaleta();
+    mostrarToast("¡Paleta generada!");
+});
+generarPaleta(); // Muestra una paleta al cargar la página //
+
+const toast = document.getElementById("toast");
+let temporizador;
+
+function mostrarToast(mensaje) {
+    toast.textContent = mensaje;
+    toast.classList.add("visible");
+
+    clearTimeout(temporizador);
+    temporizador = setTimeout(function () {
+        toast.classList.remove("visible");
+    }, 1000);
+}
