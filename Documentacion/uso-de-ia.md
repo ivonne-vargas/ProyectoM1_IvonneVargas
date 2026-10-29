@@ -109,4 +109,33 @@ y convertirlo a texto solo al mostrarlo. La solución quedó en 4 partes:
   un elemento, como el botón. Usé `change` en el selector de formato para
   que el código cambie al instante, sin pulsar "Generar paleta".
 
-  
+  ### Prompt No.4 utilizado
+
+📸 [Ver captura del prompt con la IA](./capturas/promt-4-copiar-codigo.png)
+
+### Respuesta obtenida
+
+La IA propuso 3 partes:
+1. `copiarCodigo(texto)` con `navigator.clipboard.writeText` y un toast
+   de confirmación o de error.
+2. Eventos `click` y `keydown` en el elemento del código, con
+   `tabIndex` y `role="button"` para que funcione con teclado.
+3. Estilos de cursor, hover y foco visible en `.codigo`.
+
+### Qué aprendí / cómo lo adapté
+
+- Aprendí que `navigator.clipboard.writeText` copia texto al portapapeles
+  y devuelve una promesa: `.then` corre si salió bien y `.catch` si falló.
+  Reutilicé el toast para avisar el resultado.
+- Decidí que el clic fuera solo en el código y no en toda la tarjeta,
+  para que la acción fuera más clara. Por eso moví los eventos y los
+  atributos de accesibilidad del `<article>` al `<p class="codigo">`.
+- Entendí que un `<p>` no se puede usar con el teclado por defecto. Con
+  `tabIndex = 0` entra en el orden de Tab, y con `role="button"` los
+  lectores de pantalla lo anuncian como botón.
+- Aprendí que `keydown` detecta teclas, y que `preventDefault()` evita
+  que la barra espaciadora haga scroll.
+- Usé `codigo.textContent` para copiar siempre lo que se ve en pantalla,
+  así funciona igual en HEX y en HSL.
+- Probé en DevTools: en Elements > Accessibility vi el código como
+  `button`, y en la Console confirmé que no había errores.
