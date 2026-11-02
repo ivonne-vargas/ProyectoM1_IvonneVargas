@@ -273,3 +273,28 @@ footer a:focus-visible {
     outline-offset: 2px;
 }
 
+.instrucciones {
+    margin-bottom: 1.5rem;
+    padding: 0.75rem 1rem;
+    background-color: #fff;
+    border: 2px solid #b44d77;
+    border-radius: 0.5rem;
+    color: #333;
+}
+
+.instrucciones summary {
+    cursor: pointer;
+    font-weight: bold;
+    color: #8a2f57;
+}
+
+.instrucciones summary:focus-visible {
+    outline: 3px solid #1a1a1a;
+    outline-offset: 3px;
+}
+
+.instrucciones ol {
+    margin-top: 0.75rem;
+    padding-left: 1.5rem;
+    line-height: 1.6;
+}
