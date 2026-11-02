@@ -15,20 +15,21 @@
     <main>
         <!-- CONTROLES -->
         <section class="controles">
-            <label for="select-cantidad">Cantidad de colores</label>
+            <label for="select-cantidad">Cantidad de colores:</label>
             <select id="select-cantidad">
                 <option value="6">6 colores</option>
                 <option value="8">8 colores</option>
                 <option value="9">9 colores</option>
             </select>
 
-            <label for="select-formato">Formato de código</label>
+            <label for="select-formato">Formato de código:</label>
             <select id="select-formato">
                 <option value="hex">HEX</option>
                 <option value="hsl">HSL</option>
             </select>
 
             <button id="btn-generar" type="button">GENERAR PALETA</button>
+            <button id="btn-guardar" type="button">Guardar paleta</button>
         </section>
 
         <!-- PALETA DE COLORES -->
@@ -36,10 +37,22 @@
 
         <!-- MENSAJE DE FEEDBACK -->
         <p id="toast" role="status"></p>
+
+        <!-- HISTORIAL DE PALETAS GUARDADAS -->
+        <section class="historial">
+           <h2>Historial de paletas guardadas</h2>
+           <button id="btn-borrar-historial" type="button">Borrar historial</button>
+           <div id="historial"></div>
+        </section>
     </main>
 
     <footer>
-        <p>Proyecto Integrador M1</p>
+       <p>Proyecto Integrador M1</p>
+       <p>
+          Ivonne Vargas |
+          <a href="https://www.linkedin.com/in/ivonne-alexandra-vargas-1b70a9388" target="_blank" rel="noopener noreferrer">LinkedIn</a> |
+          <a href="https://github.com/ivonne-vargas" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </p>
     </footer>
 
     <script src="script.js"></script>

@@ -4,7 +4,13 @@ const selectFormato = document.getElementById("select-formato");
 const contenedorPaleta = document.getElementById("paleta");
 const botonGenerar = document.getElementById("btn-generar");
 const toast = document.getElementById("toast");
+const botonGuardar = document.getElementById("btn-guardar");
+const botonBorrarHistorial = document.getElementById("btn-borrar-historial");
+const contenedorHistorial = document.getElementById("historial");
 
+const CLAVE_HISTORIAL = "historialPaletas";
+const MAXIMO_GUARDADAS = 10;
+let historial = [];
 
 let paletaActual = [];
 let temporizador;
@@ -109,6 +115,8 @@ function mostrarPaleta() {
     });
 }
 
+historial = cargarHistorial();
+mostrarHistorial();
 
 function generarPaleta() {
     const cantidad = Number(selectCantidad.value);
@@ -143,6 +151,113 @@ function alternarAncla(color) {
     mostrarToast(color.anclado ? "Color anclado" : "Color desanclado");
 }
 
+// Lee el historial guardado (si no hay nada o está dañado, devuelve [])
+function cargarHistorial() {
+    try {
+        const texto = localStorage.getItem(CLAVE_HISTORIAL);
+        return texto ? JSON.parse(texto) : [];
+    } catch (error) {
+        return [];
+    }
+}
+
+function guardarHistorial() {
+    try {
+        localStorage.setItem(CLAVE_HISTORIAL, JSON.stringify(historial));
+    } catch (error) {
+        mostrarToast("No se pudo guardar");
+    }
+}
+
+// Guarda una copia de la paleta actual al inicio del historial
+function guardarPaletaActual() {
+    const copia = paletaActual.map(function (color) {
+        return {
+            tono: color.tono,
+            saturacion: color.saturacion,
+            luminosidad: color.luminosidad,
+            anclado: false
+        };
+    });
+
+    historial.unshift(copia);
+    historial = historial.slice(0, MAXIMO_GUARDADAS);
+    guardarHistorial();
+    mostrarHistorial();
+    mostrarToast("Paleta guardada");
+}
+
+// Devuelve una paleta guardada a la zona principal
+function cargarPaletaGuardada(indice) {
+    paletaActual = historial[indice].map(function (color) {
+        return { ...color };
+    });
+    selectCantidad.value = String(paletaActual.length);
+    mostrarPaleta();
+    mostrarToast("Paleta cargada");
+}
+
+function eliminarPaletaGuardada(indice) {
+    historial.splice(indice, 1);
+    guardarHistorial();
+    mostrarHistorial();
+    mostrarToast("Paleta eliminada");
+}
+
+function borrarHistorial() {
+    historial = [];
+    guardarHistorial();
+    mostrarHistorial();
+    mostrarToast("Historial borrado");
+}
+
+function mostrarHistorial() {
+    contenedorHistorial.innerHTML = "";
+
+    if (historial.length === 0) {
+        const vacio = document.createElement("p");
+        vacio.textContent = "Aún no hay paletas guardadas.";
+        contenedorHistorial.appendChild(vacio);
+        return;
+    }
+
+    historial.forEach(function (paleta, indice) {
+        const item = document.createElement("article");
+        item.className = "item-historial";
+
+        const muestras = document.createElement("div");
+        muestras.className = "muestras";
+
+        paleta.forEach(function (color) {
+            const muestra = document.createElement("span");
+            muestra.className = "muestra";
+            muestra.style.backgroundColor = aTextoHsl(color);
+            muestras.appendChild(muestra);
+        });
+
+        const botonCargar = document.createElement("button");
+        botonCargar.type = "button";
+        botonCargar.textContent = "Cargar";
+        botonCargar.setAttribute("aria-label", "Cargar paleta guardada " + (indice + 1));
+        botonCargar.addEventListener("click", function () {
+            cargarPaletaGuardada(indice);
+        });
+
+        const botonEliminar = document.createElement("button");
+        botonEliminar.type = "button";
+        botonEliminar.textContent = "Eliminar";
+        botonEliminar.setAttribute("aria-label", "Eliminar paleta guardada " + (indice + 1));
+        botonEliminar.addEventListener("click", function () {
+            eliminarPaletaGuardada(indice);
+        });
+
+        item.appendChild(muestras);
+        item.appendChild(botonCargar);
+        item.appendChild(botonEliminar);
+        contenedorHistorial.appendChild(item);
+    });
+}
+
 function mostrarToast(mensaje) {
     toast.textContent = mensaje;
     toast.classList.add("visible");
@@ -160,6 +275,9 @@ botonGenerar.addEventListener("click", function () {
 });
 
 selectFormato.addEventListener("change", mostrarPaleta);
+
+botonGuardar.addEventListener("click", guardarPaletaActual);
+botonBorrarHistorial.addEventListener("click", borrarHistorial);
 
 generarPaleta(); // Muestra una paleta al cargar la página//
 

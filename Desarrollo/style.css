@@ -26,6 +26,28 @@ main{
     flex:1;
 }
 
+footer{
+    font-size:0.875rem;
+    margin-top: 2rem;
+    padding: 1rem;
+    text-align: center;
+    color: #333;
+}
+
+footer a {
+    color: #8a2f57;
+    font-weight: bold;
+}
+
+footer a:hover {
+    text-decoration: none;
+}
+
+footer a:focus-visible {
+    outline: 3px solid #1a1a1a;
+    outline-offset: 2px;
+}
+
 .controles{
     display: flex;
     align-items: center;
@@ -82,6 +104,65 @@ main{
     outline-offset: 3px;
 }
 
+#btn-guardar,
+#btn-borrar-historial,
+.item-historial button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    color: #b44d77;
+    background-color: #fff;
+    border: 2px solid #b44d77;
+    border-radius: 0.3rem;
+    cursor: pointer;
+}
+
+#btn-guardar:hover,
+#btn-borrar-historial:hover,
+.item-historial button:hover {
+    background-color: #fbeef3;
+}
+
+#btn-guardar:focus-visible,
+#btn-borrar-historial:focus-visible,
+.item-historial button:focus-visible {
+    outline: 3px solid #1a1a1a;
+    outline-offset: 3px;
+}
+
+.historial {
+    margin-top: 2rem;
+}
+
+.historial h2 {
+    margin-bottom: 0.75rem;
+}
+
+#historial {
+    display: grid;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.item-historial {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.muestras {
+    display: flex;
+    flex: 1;
+    min-width: 12rem;
+    height: 2.5rem;
+    border-radius: 0.3rem;
+    overflow: hidden;
+}
+
+.muestra {
+    flex: 1;
+}
+
 #paleta{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -107,13 +188,6 @@ main{
     opacity: 1;
 }
 
-footer{
-    font-size:0.875rem;
-    margin-top: 2rem;
-    padding: 1rem;
-    text-align: center;
-    color: #333;
-}
 
 .tarjeta {
     flex-direction: column;
@@ -166,3 +240,4 @@ footer{
     outline: 3px solid #1a1a1a;
     outline-offset: 2px;
 }
+
