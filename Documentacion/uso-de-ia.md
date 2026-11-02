@@ -205,3 +205,33 @@ La IA propuso 7 partes:
 - Probé en DevTools: en Application > Local Storage vi la clave
   `historialPaletas` con el texto JSON, y comprobé que al borrarla y
   recargar el historial aparece vacío.
+
+  ### Prompt No.7 utilizado
+
+> Ahora quiero que la página sea responsive. Con 8 colores quiero 4
+> columnas en pantalla ancha para que no quede una tarjeta sola, y en
+> pantallas pequeñas que pase a 2 columnas y luego a 1. JavaScript y
+> CSS puros, explica cada término nuevo en una línea. Formato: partes
+> con código y cómo probarlo.
+
+### Respuesta obtenida
+
+La IA propuso:
+1. Guardar la cantidad de colores en un atributo `data-cantidad` desde JS.
+2. Una regla CSS que usa ese atributo para acomodar 8 colores en 4 columnas.
+3. Dos `@media` que reducen las columnas a 2 y luego a 1 en pantallas pequeñas.
+
+### Qué aprendí / cómo lo adapté
+
+- Aprendí que `dataset.cantidad` crea un atributo `data-cantidad` en el
+  elemento, y que CSS lo puede leer con un selector de atributo. Así JS
+  y CSS se comunican sin usar estilos inline.
+- Entendí que una `@media` aplica sus reglas solo si la ventana cumple
+  una condición, como `max-width: 48rem`, y que debe ir después de las
+  reglas base para no ser sobrescrita.
+- Aprendí que hay que repetir `#paleta[data-cantidad="8"]` dentro de la
+  `@media` porque, si no, la regla de 4 columnas tiene más prioridad.
+- Me adelanté y apliqué estos cambios antes de pedirlos paso a paso, y
+  luego los revisé con la IA para confirmar que estaban bien.
+- Probé en DevTools con el modo dispositivo en 1280px, 768px y 360px, y
+  comprobé que no hubiera scroll horizontal.
