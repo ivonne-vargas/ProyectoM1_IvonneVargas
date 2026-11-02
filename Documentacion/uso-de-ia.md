@@ -139,3 +139,31 @@ La IA propuso 3 partes:
   así funciona igual en HEX y en HSL.
 - Probé en DevTools: en Elements > Accessibility vi el código como
   `button`, y en la Console confirmé que no había errores.
+
+  ### Prompt No.5 utilizado
+
+📸 [Ver captura del prompt con la IA](./capturas/promt-5-anclar-color.png)
+
+### Respuesta obtenida
+
+La IA propuso 4 partes:
+1. Agregar la propiedad `anclado` a cada color.
+2. `generarColorParecido(base)`, que varía el tono unos grados.
+3. Modificar `generarPaleta` para conservar el ancla y generar los demás parecidos.
+4. Un botón "Anclar" por tarjeta y la función `alternarAncla`.
+
+### Qué aprendí / cómo lo adapté
+
+- Aprendí que puedo agregar propiedades a un objeto (`anclado`) para
+  guardar el estado de cada color.
+- Entendí que en HSL el tono es un círculo de 0 a 360, y que variar el
+  tono unos grados da colores parecidos. Con `% 360` el valor "da la
+  vuelta" y no se sale del rango.
+- Aprendí a usar `find` para buscar en un array el primer elemento que
+  cumple una condición.
+- Decidí que solo un color pueda estar anclado a la vez, para que la
+  gama tenga una base clara.
+- Usé `aria-pressed` en el botón para que los lectores de pantalla
+  sepan si está activado.
+- Probé en DevTools con `console.table(paletaActual)` para ver cuál
+  color tenía `anclado: true`.
