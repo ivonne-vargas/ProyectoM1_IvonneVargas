@@ -182,9 +182,32 @@ Las pruebas se hicieron sobre la demo publicada en GitHub Pages.
 
 Los prompts, resultados y aprendizajes están en [Documentacion/uso-de-ia.md](Documentacion/uso-de-ia.md).
 
+## Decisiones técnicas
+
+- **Colores como datos:** cada color se guarda como objeto (tono, saturación y luminosidad) y se convierte a HEX o HSL solo para mostrarlo. Así, cambiar de formato no pierde la paleta.
+- **Conversión a HEX:** uso una fórmula estándar de conversión HSL a HEX. La validé con `aTextoHex({ tono: 0, saturacion: 100, luminosidad: 50 })`, que devuelve `#ff0000`.
+- **Separar crear de mostrar:** `generarPaleta()` crea colores nuevos y `mostrarPaleta()` solo los dibuja.
+- **Toast:** usa una clase CSS (`visible`) activada desde JS, y `role="status"` para que los lectores de pantalla lo anuncien.
+- **Responsive con `data-cantidad`:** JS escribe la cantidad de colores en un atributo y CSS lo usa para acomodar las columnas (8 colores en 4 columnas, sin tarjeta huérfana).
+- **Botón principal a la derecha:** "Generar paleta" está al final de los controles, para alcanzarlo mejor con el pulgar en celular. Lo moví en el HTML y no con `order`, para que el orden visual y el de teclado coincidan.
+- **Historial en `localStorage`:** guarda como máximo 10 paletas, como copias de números, con `try/catch` por si el navegador bloquea el almacenamiento.
+- **Instrucciones con `<details>`:** elemento HTML nativo, plegable y operable con teclado, sin JavaScript.
+- **Estructura de carpetas y demo:** la consigna exige `Desarrollo/` y `Documentación/`, por eso la demo se publica en `.../Desarrollo/`.
+- **Desarrollo vs. producción:** en local se abre `index.html`; en producción GitHub Pages sirve el repositorio por HTTPS, requisito para `navigator.clipboard`.
+
+## Accesibilidad
+
+- Foco visible en botones, selects, códigos y enlaces.
+- Los códigos de color se operan con teclado (Tab, Enter o espacio) y se anuncian como botón.
+- `aria-pressed` en el botón de anclar y `aria-label` en los botones del historial.
+- Toast con `role="status"`.
+- Contraste revisado en los colores principales.
+
 ## Mejoras futuras
 
-- Anclar varios colores a la vez, exportar la paleta como imagen o CSS.
+- Anclar varios colores a la vez.
+- Exportar la paleta como imagen o como variables CSS.
+- Permitir nombrar las paletas guardadas.
 
 ## Autora
 
