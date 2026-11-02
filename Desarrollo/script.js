@@ -109,6 +109,7 @@ function crearTarjeta(color, formato) {
 function mostrarPaleta() {
     const formato = selectFormato.value;
     contenedorPaleta.innerHTML = "";
+    contenedorPaleta.dataset.cantidad = paletaActual.length;
 
     paletaActual.forEach(function (color) {
         contenedorPaleta.appendChild(crearTarjeta(color, formato));

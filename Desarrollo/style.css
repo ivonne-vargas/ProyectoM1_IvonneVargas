@@ -169,6 +169,28 @@ footer a:focus-visible {
     gap: 16px;
 }
 
+#paleta[data-cantidad="8"] {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+@media (max-width: 48rem) {
+    body {
+        padding: 1rem;
+    }
+
+    #paleta,
+    #paleta[data-cantidad="8"] {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 30rem) {
+    #paleta,
+    #paleta[data-cantidad="8"] {
+        grid-template-columns: 1fr;
+    }
+}
+
 #toast{
     margin-top: 16px;
     padding: 0.5rem 1rem;
@@ -196,7 +218,7 @@ footer a:focus-visible {
     gap: 0.5rem;
     display: flex;
     align-items: flex-end;
-    min-height: 8rem;
+    min-height: 6rem;
     padding: 0.75rem;
     border-radius: 0.5rem;
     box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.15);
