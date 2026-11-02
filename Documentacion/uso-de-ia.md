@@ -235,3 +235,12 @@ La IA propuso:
   luego los revisé con la IA para confirmar que estaban bien.
 - Probé en DevTools con el modo dispositivo en 1280px, 768px y 360px, y
   comprobé que no hubiera scroll horizontal.
+
+  ### Pruebas finales con DevTools
+
+Revisé la demo publicada con DevTools: Console (sin errores),
+Elements > Accessibility (labels y roles), Application > Local Storage
+(clave `historialPaletas`) y modo dispositivo (1280, 768 y 360px).
+Usé la IA para armar la lista de pruebas y comprobar cada resultado.
+Los errores que depuré durante el proyecto fueron la coma faltante en
+`generarColor` y el typo `seelect-formato` en el HTML.
