@@ -167,3 +167,41 @@ La IA propuso 4 partes:
   sepan si está activado.
 - Probé en DevTools con `console.table(paletaActual)` para ver cuál
   color tenía `anclado: true`.
+
+  
+### Prompt No.6 utilizado
+
+> Ahora quiero poder guardar la paleta actual y ver un historial de
+> paletas guardadas en la misma página, que no se pierda al recargar.
+> Debe poder cargar o eliminar una paleta del historial. JavaScript
+> puro, funciones pequeñas, explica cada término nuevo en una línea.
+> Formato: partes con código y cómo probarlo.
+
+
+### Respuesta obtenida
+
+La IA propuso 7 partes:
+1. Un botón "Guardar paleta" y una sección de historial en el HTML.
+2. Constantes y una variable `historial`.
+3. Funciones para leer y guardar en `localStorage` con `JSON`.
+4. Funciones para guardar, cargar y eliminar paletas.
+5. `mostrarHistorial()`, que dibuja cada paleta como una tira de colores.
+6. Eventos y carga del historial al iniciar la página.
+7. Estilos de los botones y del historial.
+
+### Qué aprendí / cómo lo adapté
+
+- Aprendí que `localStorage` guarda solo texto y no se borra al
+  recargar. Por eso uso `JSON.stringify` para guardar los arrays de
+  objetos y `JSON.parse` para leerlos.
+- Entendí que conviene guardar una copia de la paleta, no la original,
+  para que anclar o cambiar la paleta actual no modifique la guardada.
+- Aprendí métodos de arrays: `unshift` agrega al inicio, `slice` limita
+  la cantidad y `splice` elimina un elemento.
+- Entendí para qué sirve `try/catch`: si el almacenamiento falla, la
+  página no se rompe y muestra un aviso.
+- Reutilicé `mostrarPaleta` y el toast para cargar paletas guardadas,
+  en vez de escribir código nuevo.
+- Probé en DevTools: en Application > Local Storage vi la clave
+  `historialPaletas` con el texto JSON, y comprobé que al borrarla y
+  recargar el historial aparece vacío.
