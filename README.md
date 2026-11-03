@@ -63,6 +63,13 @@ No requiere instalar nada. Para copiar al portapapeles necesitas HTTPS o `localh
 - La demo está en `/Desarrollo/` porque la consigna exige esa estructura de carpetas.
 - Desarrollo vs. producción: en local abres el archivo; en producción GitHub Pages lo sirve por HTTPS.
 
+## Accesibilidad
+
+- Labels asociados a los selects (ver `Documentacion/capturas/labels-asociados.png`)
+- Foco visible en todos los elementos interactivos
+- Códigos de color operables con teclado (Tab, Enter o espacio)
+- `aria-pressed` en el botón de anclar
+- Contraste verificado
 
 ## Proceso de desarrollo
 
