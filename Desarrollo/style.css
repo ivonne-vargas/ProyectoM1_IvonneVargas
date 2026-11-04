@@ -173,33 +173,6 @@ footer a:focus-visible {
     grid-template-columns: repeat(4, 1fr);
 }
 
-@media (max-width: 48rem) {
-    body {
-        padding: 1rem;
-    }
-
-    #paleta,
-    #paleta[data-cantidad="8"] {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    #toast {
-        top: 0.5rem;
-        left: 0.5rem;
-        right: 0.5rem;
-        text-align: center;
-    }
-    #btn-guardar {
-    margin-left: auto;
-}
-}
-
-@media (max-width: 30rem) {
-    #paleta,
-    #paleta[data-cantidad="8"] {
-        grid-template-columns: 1fr;
-    }
-}
-
 #toast {
     position: fixed;
     top: 1rem;
@@ -220,11 +193,38 @@ footer a:focus-visible {
     opacity: 1;
 }
 
+@media (max-width: 48rem) {
+    body {
+        padding: 1rem;
+    }
+
+    #paleta,
+    #paleta[data-cantidad="8"] {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    #toast {
+        top: 0.5rem;
+        left: 0.5rem;
+        right: 0.5rem;
+        text-align: center;
+    }
+
+    #btn-guardar {
+    margin-left: auto;
+    }
+}
+
+@media (max-width: 30rem) {
+    #paleta,
+    #paleta[data-cantidad="8"] {
+        grid-template-columns: 1fr;
+    }
+}
 
 .tarjeta {
     flex-direction: column;
     justify-content: flex-end;
-    align-items: flex-start;
     gap: 0.5rem;
     display: flex;
     align-items: flex-end;
