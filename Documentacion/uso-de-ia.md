@@ -1,5 +1,7 @@
 ## 🤖 Uso de IA en el desarrollo
 
+Usé Claude como copiloto durante todo el proyecto. Trabajamos paso a paso: yo escribía el código, y la IA me explicaba los conceptos nuevos, revisaba mi código y señalaba errores. Para cada prompt documento qué pedí, qué respondió y qué aprendí o cambié yo.
+
 ### Prompt No.1 utilizado
 
 > Soy principiante en desarrollo web. Estoy haciendo un generador de paletas de colores con HTML, CSS y JavaScript puro. Ya tengo el HTML y el CSS terminados. Actúa como mentor de programación frontend. Explícame cómo generar un color HEX y HSL aleatorio con una función. Sin librerías. Usa solo funciones, Math.random y toString(16). Evita conceptos avanzados. Primero explica la lógica en 3 pasos simples, luego muestra el código comentado línea por línea.
@@ -57,6 +59,8 @@ function generarHsl() {
 
 ### Prompt No.2 utilizado
 
+> Ahora quiero conectar esas funciones con la página. Mi HTML ya tiene un select de cantidad (6, 8 y 9), un select de formato (hex y hsl), un botón "Generar paleta" y una sección vacía donde van los colores. Necesito que, al presionar el botón, se genere la cantidad de colores elegida, en el formato elegido, y se dibujen con su código visible. Además, debe aparecer una paleta al cargar la página. JavaScript puro, funciones pequeñas, explica cada término nuevo en una línea. Formato: pasos numerados con código comentado y cómo probarlo en la consola.
+
 📸 [Ver captura del prompt con la IA](./capturas/promt-2-render-paleta.png)
 
 ### Respuesta obtenida
@@ -78,7 +82,9 @@ Pasos numerados con código y prueba en consola:
 - Probé cada paso en la consola del navegador (DevTools) antes de hacer el commit.
   
 
-  ### Prompt No.3 utilizado
+### Prompt No.3 utilizado
+
+> Ahora quiero una mejora: que al cambiar entre HEX y HSL no se pierda la paleta. Si genero una paleta en HEX y me gusta, quiero ver cómo queda en HSL sin que los colores cambien, solo el texto del código. JavaScript puro, funciones pequeñas, explica qué entra y qué sale de cualquier fórmula que no sea obvia. Formato: partes con código y cómo probarlo.
 
 📸 [Ver captura del prompt con la IA](./capturas/promt-3-formato-sin-perder-paleta.png)
 
@@ -109,7 +115,9 @@ y convertirlo a texto solo al mostrarlo. La solución quedó en 4 partes:
   un elemento, como el botón. Usé `change` en el selector de formato para
   que el código cambie al instante, sin pulsar "Generar paleta".
 
-  ### Prompt No.4 utilizado
+### Prompt No.4 utilizado
+
+> Ahora quiero que al hacer clic en el código de un color (no en toda la tarjeta) se copie ese texto al portapapeles y aparezca el mensaje "Texto copiado" en el toast. Debe funcionar también con el teclado. JavaScript puro, funciones pequeñas, explica cada término nuevo en una línea. Formato: partes con código y cómo probarlo.
 
 📸 [Ver captura del prompt con la IA](./capturas/promt-4-copiar-codigo.png)
 
@@ -140,7 +148,9 @@ La IA propuso 3 partes:
 - Probé en DevTools: en Elements > Accessibility vi el código como
   `button`, y en la Console confirmé que no había errores.
 
-  ### Prompt No.5 utilizado
+### Prompt No.5 utilizado
+
+> Ahora quiero poder anclar un color de la paleta, y que al generar de nuevo los demás colores se parezcan al anclado. Solo un color anclado a la vez. JavaScript puro, funciones pequeñas, explica cada término nuevo en una línea. Formato: partes con código y cómo probarlo.
 
 📸 [Ver captura del prompt con la IA](./capturas/promt-5-anclar-color.png)
 
@@ -236,6 +246,21 @@ La IA propuso:
 - Probé en DevTools con el modo dispositivo en 1280px, 768px y 360px, y
   comprobé que no hubiera scroll horizontal.
 
+### Prompt No.8 utilizado
+
+> Al probar la página en modo celular noto dos problemas: el botón "Generar paleta" queda en un lugar poco accesible y el aviso del toast queda al final de la pantalla, fuera de la vista cuando hay 9 colores. Quiero que el botón principal quede a la derecha, después de "Guardar paleta", y que el aviso se vea sin tener que hacer scroll.
+
+### Respuesta obtenida
+
+La IA propuso dos ajustes en CSS: reordenar el botón principal y fijar el toast con `position: fixed` para que no dependa del scroll. Mi primera solución puso el botón arriba y a todo el ancho; no me gustó.
+
+### Qué aprendí / cómo lo adapté
+
+- Detecté el problema probando con el modo dispositivo de DevTools, no leyendo el código.
+- Descarté la primera propuesta (botón arriba y a ancho completo) y pedí otra: mover el botón en el HTML para que quede a la derecha.
+- Aprendí que `order` cambia el orden visual pero no el de Tab, y por eso preferí mover el botón en el HTML: así el orden visual y el de teclado coinciden.
+- Aprendí que `position: fixed` ancla un elemento a la ventana y no al contenido.
+
   ### Pruebas finales con DevTools
 
 Revisé la demo publicada con DevTools: Console (sin errores),
@@ -244,3 +269,10 @@ Elements > Accessibility (labels y roles), Application > Local Storage
 Usé la IA para armar la lista de pruebas y comprobar cada resultado.
 Los errores que depuré durante el proyecto fueron la coma faltante en
 `generarColor` y el typo `seelect-formato` en el HTML.
+
+## Reflexión: cómo influyó la IA en el proyecto
+
+- **Prompts más efectivos:** los que incluían contexto (qué ya tenía hecho), restricciones (JavaScript puro, funciones pequeñas) y un formato de salida (partes con prueba en consola).
+- **Dónde no seguí la IA:** simplifiqué el HTML cuando era demasiado complejo para mi nivel, descarté una propuesta de botón que no me gustó y decidí el comportamiento del clic para copiar (solo en el código).
+- **Qué verifiqué por mi cuenta:** probé cada paso en DevTools, validé la conversión HEX con un caso conocido (`#ff0000`) y corregí errores que la IA no podía ver, como la coma faltante en mi script.
+- **Qué aprendí del proceso:** que una respuesta de IA hay que leerla, probarla y adaptarla, no copiarla.
