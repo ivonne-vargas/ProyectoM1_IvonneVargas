@@ -52,25 +52,6 @@ No requiere instalar nada. Para copiar al portapapeles necesitas HTTPS o `localh
 3. En **Source** elige **Deploy from a branch**, rama `main` y carpeta `/ (root)`.
 4. Espera 1 o 2 minutos. La app queda en la URL de la demo, con `/Desarrollo/` al final.
 
-## Decisiones técnicas
-
-- Cada color se guarda como objeto (tono, saturación, luminosidad) y se convierte a HEX o HSL solo para mostrarlo; así el cambio de formato no pierde la paleta.
-- La conversión a HEX usa una fórmula estándar; la validé con `aTextoHex({tono:0, saturacion:100, luminosidad:50})`, que devuelve `#ff0000`.
-- El toast usa una clase `visible` activada desde JS y `position: fixed`, para verse sin importar el scroll. Tiene `role="status"` para lectores de pantalla.
-- `data-cantidad` pasa la cantidad de colores de JS a CSS para ajustar las columnas.
-- El botón principal está a la derecha de los controles para alcanzarlo mejor con el pulgar en celular.
-- El historial guarda como máximo 10 paletas en `localStorage`.
-- La demo está en `/Desarrollo/` porque la consigna exige esa estructura de carpetas.
-- Desarrollo vs. producción: en local abres el archivo; en producción GitHub Pages lo sirve por HTTPS.
-
-## Accesibilidad
-
-- Labels asociados a los selects (ver `Documentacion/capturas/labels-asociados.png`)
-- Foco visible en todos los elementos interactivos
-- Códigos de color operables con teclado (Tab, Enter o espacio)
-- `aria-pressed` en el botón de anclar
-- Contraste verificado
-
 ## Proceso de desarrollo
 
 *La numeración de los GIFs corresponde al orden de mi muestra de desarrollo, no a la numeración de las tareas del proyecto.*
